@@ -19,7 +19,7 @@ requirements = [
 
 
 setup(
-    name="makeitsports_bot",
+    name="img2art_search",
     version="0.0.1",
     url="https://github.com/brunorosilva/makeitsports-bot",
     author="Bruno Chicelli",
@@ -27,7 +27,7 @@ setup(
     description="Short description",
     long_description=read("README.rst"),
     packages=find_packages(exclude=("tests",)),
-    entry_points={"console_scripts": ["makeitsports_bot=makeitsports_bot.cli:cli"]},
+    entry_points={"console_scripts": ["img2art_search=img2art_search.cli:cli"]},
     install_requires=requirements,
     classifiers=[
         "Programming Language :: Python",

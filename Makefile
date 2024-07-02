@@ -1,7 +1,7 @@
 lint:
-	isort makeitsports_bot
-	black makeitsports_bot
-	flake8 makeitsports_bot
+	isort img2art_search
+	black img2art_search
+	flake8 img2art_search
 viz:
 	poetry run python3 main.py interface
 train:

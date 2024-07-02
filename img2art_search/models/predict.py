@@ -1,8 +1,8 @@
-from makeitsports_bot.data.dataset import ImageRetrievalDataset
-from makeitsports_bot.data.transforms import transform
-from makeitsports_bot.models.train import fine_tune_vit
-from makeitsports_bot.utils import inverse_transform_img
-from makeitsports_bot.models.compute_embeddings import (
+from img2art_search.data.dataset import ImageRetrievalDataset
+from img2art_search.data.transforms import transform
+from img2art_search.models.train import fine_tune_vit
+from img2art_search.utils import inverse_transform_img
+from img2art_search.models.compute_embeddings import (
     search_image,
     create_gallery,
     load_fine_tuned_model,

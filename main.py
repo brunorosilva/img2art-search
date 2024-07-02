@@ -1,6 +1,6 @@
-from makeitsports_bot.models.predict import predict
-from makeitsports_bot.models.train import fine_tune_vit
-from makeitsports_bot.models.compute_embeddings import create_gallery_embeddings
+from img2art_search.models.predict import predict
+from img2art_search.models.train import fine_tune_vit
+from img2art_search.models.compute_embeddings import create_gallery_embeddings
 import gradio as gr
 import argparse
 

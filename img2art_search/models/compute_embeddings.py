@@ -1,9 +1,9 @@
 import torch
-from makeitsports_bot.models.model import ViTImageSearchModel
+from img2art_search.models.model import ViTImageSearchModel
 import numpy as np
 from sklearn.neighbors import NearestNeighbors
-from makeitsports_bot.data.dataset import ImageRetrievalDataset
-from makeitsports_bot.data.transforms import transform
+from img2art_search.data.dataset import ImageRetrievalDataset
+from img2art_search.data.transforms import transform
 from tqdm import tqdm
 import os
 

@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["brunorosilva <b.rosilva1@gmail.com>"]
 readme = "README.md"
-packages = [{include = "makeitsports_bot"}]
+packages = [{include = "img2art_search"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"

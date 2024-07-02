@@ -1,9 +1,9 @@
-from makeitsports_bot.data.dataset import ImageRetrievalDataset
+from img2art_search.data.dataset import ImageRetrievalDataset
 from torch.utils.data import DataLoader
-from makeitsports_bot.losses.contrastiveloss import ContrastiveLoss
-from makeitsports_bot.data.data import get_data_from_local, split_train_val_test
-from makeitsports_bot.data.transforms import transform
-from makeitsports_bot.models.model import ViTImageSearchModel
+from img2art_search.losses.contrastiveloss import ContrastiveLoss
+from img2art_search.data.data import get_data_from_local, split_train_val_test
+from img2art_search.data.transforms import transform
+from img2art_search.models.model import ViTImageSearchModel
 import torch
 from torch.optim import Adam
 from torch.utils.tensorboard import SummaryWriter

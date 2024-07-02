@@ -1,4 +1,4 @@
-from makeitsports_bot.constants import BASE_PATH
+from img2art_search.constants import BASE_PATH
 import os
 import numpy as np
 

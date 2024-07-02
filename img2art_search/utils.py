@@ -1,4 +1,4 @@
-from makeitsports_bot.data.transforms import inversetransform
+from img2art_search.data.transforms import inversetransform
 
 
 def inverse_transform_img(img):
