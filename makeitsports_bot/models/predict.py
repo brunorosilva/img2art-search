@@ -26,4 +26,5 @@ def predict(img: Image):
     for idx, _ in zip(indices[0], distances[0]):
         inv_tensor = inverse_transform_img(wikiart_dataset[idx][1]).cpu().numpy()
         results.append(inv_tensor)
+    os.remove(tmp_img_path)
     return results
