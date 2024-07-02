@@ -1,4 +1,4 @@
-# (WIP) MakeItSports Bot Image-to-Art Search
+# Image-to-Art Search
 
 This project fine-tunes a Vision Transformer (ViT) model, pre-trained with "google/vit-base-patch32-224-in21k" weights and fine tuned with the style of [ArtButMakeItSports](https://www.instagram.com/artbutmakeitsports/), to perform image-to-art search across 81k artworks made available by [WikiArt](https://wikiart.org/).
 
@@ -6,7 +6,7 @@ This project fine-tunes a Vision Transformer (ViT) model, pre-trained with "goog
 
 - [Overview](#overview)
 - [Installation](#installation)
-- [Usage](#usage)
+- [How it works](#how-it-works)
 - [Dataset](#dataset)
 - [Training](#training)
 - [Inference](#inference)
@@ -44,30 +44,35 @@ This project leverages the Vision Transformer (ViT) model architecture for the t
 
 ### Training
 
-1. Fine-tune the ViT model:
-    ```sh
-    poetry run python main.py train --epochs 50 --batch_size 32
-    ```
+Fine-tune the ViT model:
+```sh
+make train
+```
 
 ### Inference via Gradio
 
-1. Perform image-to-art search using the fine-tuned model:
-    ```sh
-    poetry run python main.py interface
-    ```
+Perform image-to-art search using the fine-tuned model:
+```sh
+make viz
+```
+
+### Recreate the wikiart gallery
+```sh
+make wikiart
+```
 
 ### Create new gallery
 
-1. If you want to index new images to search, use:
-    ```sh
-    poetry run python main.py gallery --gallery_path <your_path>
-    ```
+If you want to index new images to search, use:
+```sh
+poetry run python main.py gallery --gallery_path <your_path>
+```
 
 ## Dataset
 
 The dataset derives from 1k images from the Instagram account [ArtButMakeItSports](https://www.instagram.com/artbutmakeitsports/). Images are downloaded and split into training, validation and test sets. Each image is paired with its corresponding artwork for training purposes, if you want this dataset just ask me stating your usage.
 
-WikiArt is indexed using the same process, except that there's no expected result. So each artwork is mapped to itself and the embeddings are saved as a numpy file (will be changed to chromadb in the future).
+WikiArt is indexed using the same process, except that there's no expected result. So each artwork is mapped to itself and the model is used as a feature extractor and the gallery embeddings are saved as a numpy file (will be changed to chromadb in the future).
 
 ## Training
 
@@ -76,3 +81,21 @@ The training script fine-tunes the ViT model on the prepared dataset. Key steps 
 1. Loading the pre-trained "google/vit-base-patch32-224-in21k" weights.
 2. Preparing the dataset and data loaders.
 3. Fine-tuning the model using a custom training loop.
+4. Saving the model to the results folder
+
+## Interface
+
+The recommended method to get results is to use [gradio](https://www.gradio.app/) as an interface by running `make viz`. This will open a server and you can use some image you want to search or even use your webcam to get top 4 search results.
+
+### Examples
+
+## Contributing
+There are three topics I'd appreciate help with:
+1. Increasing the gallery by embedding new painting datasets, the current one has 81k artworks and I really want to up this number to a least 500k;
+2. Porting the encoding and search to a vector db, preferably chromadb;
+3. Open issues with how this could be improved. I'm not perfect and the code is very spaghetti right now.
+
+## License
+The source code for the site is licensed under the MIT license, which you can find in the MIT-LICENSE.txt file.
+
+All graphical assets are licensed under the Creative Commons Attribution 3.0 Unported License.
