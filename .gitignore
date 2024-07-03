@@ -105,8 +105,3 @@ ENV/
 .vscode/
 .idea/
 __MACOSX/
-
-# random imgs
-*.jpeg
-*.jpg
-*.png

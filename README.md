@@ -1,6 +1,8 @@
-# Image-to-Art Search
+# Image-to-Art Search 🔍
 
 This project fine-tunes a Vision Transformer (ViT) model, pre-trained with "google/vit-base-patch32-224-in21k" weights and fine tuned with the style of [ArtButMakeItSports](https://www.instagram.com/artbutmakeitsports/), to perform image-to-art search across 81k artworks made available by [WikiArt](https://wikiart.org/).
+
+![horse](examples/horse.png)
 
 ## Table of Contents
 
@@ -20,20 +22,20 @@ This project leverages the Vision Transformer (ViT) model architecture for the t
 ## Installation
 
 1. Clone the repository:
-    ```sh
-    git clone https://github.com/brunorosilva/img2art-search.git
-    cd img2art-search
-    ```
+```sh
+git clone https://github.com/brunorosilva/img2art-search.git
+cd img2art-search
+```
 
 2. Install poetry:
-    ```sh
-    pip install poetry
-    ```
+```sh
+pip install poetry
+```
 
 3. Install using poetry:
-    ```sh
-    poetry install
-    ```
+```sh
+poetry install
+```
 
 ## How it works
 
@@ -41,6 +43,8 @@ This project leverages the Vision Transformer (ViT) model architecture for the t
 
 1. Download images from the [ArtButMakeItSports](https://www.instagram.com/artbutmakeitsports/) Instagram account.
 2. Organize the images into appropriate directories for training and validation.
+3. Get a fine tuned model
+4. Create the gallery using WikiArt
 
 ### Training
 
@@ -88,6 +92,22 @@ The training script fine-tunes the ViT model on the prepared dataset. Key steps 
 The recommended method to get results is to use [gradio](https://www.gradio.app/) as an interface by running `make viz`. This will open a server and you can use some image you want to search or even use your webcam to get top 4 search results.
 
 ### Examples
+Search for contextual similarity
+![field](examples/field.png)
+
+Search for shapes similarity
+![basket](examples/basketball.png)
+
+Search for expression similarity (yep, that's me)
+![serious_face](examples/serious_face.png)
+
+Search for pose similarity
+![lawyer](examples/lawyer.png)
+
+Search for an object
+![horse](examples/horse.png)
+
+
 
 ## Contributing
 There are three topics I'd appreciate help with:
