@@ -1,5 +1,7 @@
 # Image-to-Art Search 🔍
 
+"<b>Find real artwork that looks like your images</b>"
+
 This project fine-tunes a Vision Transformer (ViT) model, pre-trained with "google/vit-base-patch32-224-in21k" weights and fine tuned with the style of [ArtButMakeItSports](https://www.instagram.com/artbutmakeitsports/), to perform image-to-art search across 81k artworks made available by [WikiArt](https://wikiart.org/).
 
 ![horse](examples/horse.png)
