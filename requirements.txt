@@ -1,0 +1,11 @@
+torch
+torchvision
+tqdm
+pandas
+scipy
+numpy
+transformers
+tensorboard
+scikit-learn
+matplotlib
+gradio

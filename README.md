@@ -1,3 +1,14 @@
+---
+title: Img2Art Search
+emoji: 🦀
+colorFrom: purple
+colorTo: purple
+sdk: gradio
+sdk_version: 3.1.7
+app_file: app.py
+pinned: false
+license: apache-2.0
+---
 # Image-to-Art Search
 
 This project fine-tunes a Vision Transformer (ViT) model, pre-trained with "google/vit-base-patch32-224-in21k" weights and fine tuned with the style of [ArtButMakeItSports](https://www.instagram.com/artbutmakeitsports/), to perform image-to-art search across 81k artworks made available by [WikiArt](https://wikiart.org/).
