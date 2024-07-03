@@ -1,3 +1,9 @@
+---
+title: img2art-search
+app_file: app.py
+sdk: gradio
+sdk_version: 4.37.2
+---
 # Image-to-Art Search 🔍
 
 "<b>Find real artwork that looks like your images</b>"

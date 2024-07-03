@@ -7,4 +7,4 @@ interface = gr.Interface(
     outputs=gr.Gallery(label="Most similar images", height=256 * 3),
     live=True,
 )
-interface.launch()
+interface.launch(share=True)
