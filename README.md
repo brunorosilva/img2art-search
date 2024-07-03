@@ -21,8 +21,8 @@ This project leverages the Vision Transformer (ViT) model architecture for the t
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/brunorosilva/makeitsports-bot.git
-    cd makeitsports-bot
+    git clone https://github.com/brunorosilva/img2art-search.git
+    cd img2art-search
     ```
 
 2. Install poetry:

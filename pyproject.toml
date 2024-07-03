@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "makeitsports-bot"
+name = "img2art-search"
 version = "0.1.0"
 description = ""
 authors = ["brunorosilva <b.rosilva1@gmail.com>"]

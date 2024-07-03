@@ -21,7 +21,7 @@ requirements = [
 setup(
     name="img2art_search",
     version="0.0.1",
-    url="https://github.com/brunorosilva/makeitsports-bot",
+    url="https://github.com/brunorosilva/img2art-search",
     author="Bruno Chicelli",
     author_email="chicelli@outlook.com",
     description="Short description",
