@@ -9,7 +9,7 @@ def get_data_from_local():
     x = np.array(left_or_top_data)
     y = np.array([ex.replace("left_or_top", "right_or_bottom") for ex in x])
 
-    data = np.array([x, y])
+    data = np.array((x, y)).T
     return data
 
 

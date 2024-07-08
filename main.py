@@ -11,7 +11,7 @@ def make_interface():
         outputs=gr.Gallery(label="Most similar images", height=256 * 3),
         live=True,
     )
-    interface.launch(share=True)
+    interface.launch(share=False)
 
 def train(epochs, batch_size):
     fine_tune_vit(epochs, batch_size)

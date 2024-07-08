@@ -1,6 +1,8 @@
 from PIL import Image
 from torch.utils.data import Dataset
 
+Image.MAX_IMAGE_PIXELS = 933120000
+
 
 class ImageRetrievalDataset(Dataset):
     def __init__(self, data, transform=None):
@@ -11,7 +13,8 @@ class ImageRetrievalDataset(Dataset):
         return len(self.data)
 
     def __getitem__(self, idx):
-        input_path, label_path = self.data[:, idx]
+        print(self.data[idx])
+        input_path, label_path = self.data[idx]
         input_image = Image.open(input_path).convert("RGB")
         label_image = Image.open(label_path).convert("RGB")
 
@@ -19,4 +22,4 @@ class ImageRetrievalDataset(Dataset):
             input_image = self.transform(input_image)
             label_image = self.transform(label_image)
 
-        return input_image, label_image
+        return idx, input_image, label_image
