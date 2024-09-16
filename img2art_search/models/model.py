@@ -1,5 +1,5 @@
-from transformers import ViTModel
 from torch import nn
+from transformers import ViTModel
 
 
 class ViTImageSearchModel(nn.Module):

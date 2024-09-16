@@ -1,11 +1,16 @@
-from img2art_search.constants import BASE_PATH
 import os
+
 import numpy as np
+
+from img2art_search.constants import BASE_PATH
 
 
 def get_data_from_local():
-    left_or_top_data = [f"{BASE_PATH}/splits/left_or_top/{fn}" for fn in os.listdir(f"{BASE_PATH}/splits/left_or_top")]
-    
+    left_or_top_data = [
+        f"{BASE_PATH}/splits/left_or_top/{fn}"
+        for fn in os.listdir(f"{BASE_PATH}/splits/left_or_top")
+    ]
+
     x = np.array(left_or_top_data)
     y = np.array([ex.replace("left_or_top", "right_or_bottom") for ex in x])
 

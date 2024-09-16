@@ -8,10 +8,10 @@ class ImageRetrievalDataset(Dataset):
         self.transform = transform
 
     def __len__(self):
-        return len(self.data)
+        return len(self.data[0])
 
     def __getitem__(self, idx):
-        input_path, label_path = self.data[:, idx]
+        input_path, label_path = self.data.T[idx]
         input_image = Image.open(input_path).convert("RGB")
         label_image = Image.open(label_path).convert("RGB")
 

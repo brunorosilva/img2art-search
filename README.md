@@ -10,7 +10,7 @@ sdk_version: 4.37.2
 
 This project fine-tunes a Vision Transformer (ViT) model, pre-trained with "google/vit-base-patch32-224-in21k" weights and fine tuned with the style of [ArtButMakeItSports](https://www.instagram.com/artbutmakeitsports/), to perform image-to-art search across 81k artworks made available by [WikiArt](https://wikiart.org/).
 
-![horse](examples/horse.png)
+![horse](examples/horse.jpg)
 
 ## Table of Contents
 
@@ -101,19 +101,19 @@ The recommended method to get results is to use [gradio](https://www.gradio.app/
 
 ### Examples
 Search for contextual similarity
-![field](examples/field.png)
+![field](examples/field.jpg)
 
 Search for shapes similarity
-![basket](examples/basketball.png)
+![basket](examples/basketball.jpg)
 
 Search for expression similarity (yep, that's me)
-![serious_face](examples/serious_face.png)
+![serious_face](examples/serious_face.jpg)
 
 Search for pose similarity
-![lawyer](examples/lawyer.png)
+![lawyer](examples/lawyer.jpg)
 
 Search for an object
-![horse](examples/horse.png)
+![horse](examples/horse.jpg)
 
 
 

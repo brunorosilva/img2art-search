@@ -1,13 +1,14 @@
-from img2art_search.data.dataset import ImageRetrievalDataset
-from torch.utils.data import DataLoader
-from img2art_search.losses.contrastiveloss import ContrastiveLoss
-from img2art_search.data.data import get_data_from_local, split_train_val_test
-from img2art_search.data.transforms import transform
-from img2art_search.models.model import ViTImageSearchModel
+import numpy as np
 import torch
 from torch.optim import Adam
+from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
-import numpy as np
+
+from img2art_search.data.data import get_data_from_local, split_train_val_test
+from img2art_search.data.dataset import ImageRetrievalDataset
+from img2art_search.data.transforms import transform
+from img2art_search.losses.contrastiveloss import ContrastiveLoss
+from img2art_search.models.model import ViTImageSearchModel
 
 
 def fine_tune_vit(epochs, batch_size):

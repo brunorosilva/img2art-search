@@ -1,9 +1,2 @@
 notebooks/** linguist-vendored
 *.html linguist-vendored
-examples/basketball.png filter=lfs diff=lfs merge=lfs -text
-examples/field.png filter=lfs diff=lfs merge=lfs -text
-examples/horse.png filter=lfs diff=lfs merge=lfs -text
-examples/lawyer.png filter=lfs diff=lfs merge=lfs -text
-examples/serious_face.png filter=lfs diff=lfs merge=lfs -text
-*.png filter=lfs diff=lfs merge=lfs -text
-examples/*.png filter=lfs diff=lfs merge=lfs -text
