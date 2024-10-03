@@ -6,13 +6,13 @@ from sklearn.neighbors import NearestNeighbors
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 
-from img2art_search.constants import DEVICE
 from img2art_search.data.dataset import ImageRetrievalDataset
 from img2art_search.data.transforms import transform
 from img2art_search.models.model import ViTImageSearchModel
 
 
 def extract_embedding(image_data_batch, fine_tuned_model):
+    DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
     image_data_batch = image_data_batch.to(DEVICE)
     with torch.no_grad():
         embeddings = fine_tuned_model(image_data_batch).cpu().numpy()
@@ -27,6 +27,7 @@ def load_fine_tuned_model():
 
 
 def create_gallery(img_dataset, fine_tuned_model, save=True):
+    DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
     fine_tuned_model.to(DEVICE)
     gallery_embeddings = []
     gallery_dataloader = DataLoader(
@@ -43,6 +44,7 @@ def create_gallery(img_dataset, fine_tuned_model, save=True):
 
 
 def search_image(query_image_path, gallery_embeddings, k=4):
+    DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
     fine_tuned_model = load_fine_tuned_model()
     fine_tuned_model.to(DEVICE)
     query_embedding = extract_embedding(query_image_path, fine_tuned_model)

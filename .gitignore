@@ -105,3 +105,9 @@ ENV/
 .vscode/
 .idea/
 __MACOSX/
+
+data/artmakeitsports
+data/wikiart
+data/*.jpg
+data/*.jpeg
+results

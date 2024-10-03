@@ -3,12 +3,11 @@ import os
 import numpy as np
 from PIL import Image
 
-from img2art_search.constants import DEVICE
 from img2art_search.data.dataset import ImageRetrievalDataset
 from img2art_search.data.transforms import transform
 from img2art_search.models.compute_embeddings import search_image
 from img2art_search.utils import inverse_transform_img
-
+import torch
 
 def predict(img: Image):
     x = np.array([f"data/wikiart/{file}" for file in os.listdir("data/wikiart")])
@@ -16,6 +15,7 @@ def predict(img: Image):
     wikiart_dataset = ImageRetrievalDataset(wikiart_data, transform=transform)
     gallery_embeddings = np.load("results/embeddings.npy")
     tmp_img_path = "tmp_img.png"
+    DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
     if img:
         img.save(tmp_img_path)
         pred_img = np.array([[tmp_img_path], [tmp_img_path]])
@@ -28,7 +28,7 @@ def predict(img: Image):
             results.append(
                 (
                     inv_tensor,
-                    f'{wikiart_data[0][idx].split("/")[-1].split(".jpg")[0]} | {1-distance}', # noqa
+                    f'{wikiart_data[0][idx].split("/")[-1].split(".jpg")[0]} | {round(1-distance, 2)}', # noqa
                 )
             )
         os.remove(tmp_img_path)
