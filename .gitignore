@@ -111,3 +111,4 @@ data/wikiart
 data/*.jpg
 data/*.jpeg
 results
+notebooks
