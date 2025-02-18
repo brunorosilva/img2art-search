@@ -1,19 +1,16 @@
 import os
+from io import BytesIO
 
 import numpy as np
+import torch
 from PIL import Image
 
 from img2art_search.data.dataset import ImageRetrievalDataset
 from img2art_search.data.transforms import transform
 from img2art_search.models.compute_embeddings import search_image
-from img2art_search.utils import inverse_transform_img
-import torch
 
-def predict(img: Image):
-    x = np.array([f"data/wikiart/{file}" for file in os.listdir("data/wikiart")])
-    wikiart_data = np.array([x, x])
-    wikiart_dataset = ImageRetrievalDataset(wikiart_data, transform=transform)
-    gallery_embeddings = np.load("results/embeddings.npy")
+
+def predict(img: Image.Image) -> list:
     tmp_img_path = "tmp_img.png"
     DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
     if img:
@@ -21,15 +18,20 @@ def predict(img: Image):
         pred_img = np.array([[tmp_img_path], [tmp_img_path]])
         pred_dataset = ImageRetrievalDataset(pred_img, transform=transform)
         pred_image_data = pred_dataset[0][0].unsqueeze(0).to(DEVICE)
-        indices, distances = search_image(pred_image_data, gallery_embeddings)
+        indices, distances = search_image(pred_image_data)
         results = []
-        for idx, distance in zip(indices[0], distances[0]):
-            inv_tensor = inverse_transform_img(wikiart_dataset[idx][1]).cpu().numpy()
+        for index, distance in zip(indices, distances):
+            buffered = BytesIO(index)
+            image = Image.open(buffered)
+            decoded_image_array = np.array(image)
+
             results.append(
                 (
-                    inv_tensor,
-                    f'{wikiart_data[0][idx].split("/")[-1].split(".jpg")[0]} | {round(1-distance, 2)}', # noqa
+                    Image.fromarray(decoded_image_array),
+                    str(distance),
                 )
             )
         os.remove(tmp_img_path)
         return results
+    else:
+        return []

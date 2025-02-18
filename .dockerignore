@@ -1,0 +1,8 @@
+.env
+results/embeddings_current.npy
+results/embeddings.npy
+notebooks
+data
+examples
+flagged
+logs

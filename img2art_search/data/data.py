@@ -5,7 +5,7 @@ import numpy as np
 from img2art_search.constants import BASE_PATH
 
 
-def get_data_from_local():
+def get_data_from_local() -> np.ndarray:
     left_or_top_data = [
         f"{BASE_PATH}/splits/left_or_top/{fn}"
         for fn in os.listdir(f"{BASE_PATH}/splits/left_or_top")
@@ -18,7 +18,7 @@ def get_data_from_local():
     return data
 
 
-def split_train_val_test(data, test_size, val_size):
+def split_train_val_test(data: np.ndarray, test_size: float, val_size: float) -> tuple:
     train_size = 1 - test_size - val_size
     SPLIT = int(data.shape[1] * train_size)
     TEST_SPLIT = SPLIT + int(data.shape[1] * test_size)

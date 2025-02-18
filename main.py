@@ -9,9 +9,9 @@ def make_interface():
         fn=predict,
         inputs=gr.Image(type="pil"),
         outputs=gr.Gallery(label="Most similar images", height=256 * 3),
-        live=True,
+        # live=True,
     )
-    interface.launch(share=True)
+    interface.launch(share=False)
 
 def train(epochs, batch_size):
     fine_tune_vit(epochs, batch_size)

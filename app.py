@@ -5,6 +5,6 @@ interface = gr.Interface(
     fn=predict,
     inputs=gr.Image(type="pil"),
     outputs=gr.Gallery(label="Most similar images", height=256 * 3),
-    live=True,
+    # live=True,
 )
-interface.launch(share=True)
+interface.launch()

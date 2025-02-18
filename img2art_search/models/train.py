@@ -11,7 +11,7 @@ from img2art_search.losses.contrastiveloss import ContrastiveLoss
 from img2art_search.models.model import ViTImageSearchModel
 
 
-def fine_tune_vit(epochs, batch_size):
+def fine_tune_vit(epochs: int, batch_size: int) -> None:
     data = get_data_from_local()
     train_data, val_data, test_data = split_train_val_test(data, 0.2, 0.1)
     np.save("results/test_data", test_data)
@@ -56,7 +56,7 @@ def fine_tune_vit(epochs, batch_size):
         avg_train_loss = total_loss / len(train_loader)
         writer.add_scalar("Average Train Loss", avg_train_loss, epoch)
 
-        print(f"Epoch [{epoch+1}/{epochs}], Loss: {total_loss/len(train_loader)}")
+        print(f"Epoch [{epoch + 1}/{epochs}], Loss: {total_loss / len(train_loader)}")
 
         model.eval()
         with torch.no_grad():
@@ -70,6 +70,6 @@ def fine_tune_vit(epochs, batch_size):
                 val_loss += loss.item()
             avg_val_loss = val_loss / len(val_loader)
             writer.add_scalar("Validation Loss", avg_val_loss, epoch)
-            print(f"Validation Loss: {val_loss/len(val_loader)}")
+            print(f"Validation Loss: {val_loss / len(val_loader)}")
 
     torch.save(model.state_dict(), "results/model.pth")
