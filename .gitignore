@@ -110,5 +110,5 @@ data/artmakeitsports
 data/wikiart
 data/*.jpg
 data/*.jpeg
-results
 notebooks
+models/model.pth

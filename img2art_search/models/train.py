@@ -14,7 +14,7 @@ from img2art_search.models.model import ViTImageSearchModel
 def fine_tune_vit(epochs: int, batch_size: int) -> None:
     data = get_data_from_local()
     train_data, val_data, test_data = split_train_val_test(data, 0.2, 0.1)
-    np.save("results/test_data", test_data)
+    np.save("models/test_data", test_data)
     train_dataset = ImageRetrievalDataset(train_data, transform=transform)
     val_dataset = ImageRetrievalDataset(val_data, transform=transform)
 
@@ -72,4 +72,4 @@ def fine_tune_vit(epochs: int, batch_size: int) -> None:
             writer.add_scalar("Validation Loss", avg_val_loss, epoch)
             print(f"Validation Loss: {val_loss / len(val_loader)}")
 
-    torch.save(model.state_dict(), "results/model.pth")
+    torch.save(model.state_dict(), "models/model.pth")

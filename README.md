@@ -93,11 +93,11 @@ The training script fine-tunes the ViT model on the prepared dataset. Key steps 
 1. Loading the pre-trained "google/vit-base-patch32-224-in21k" weights.
 2. Preparing the dataset and data loaders.
 3. Fine-tuning the model using a custom training loop.
-4. Saving the model to the results folder
+4. Saving the model to the models folder
 
 ## Interface
 
-The recommended method to get results is to use [gradio](https://www.gradio.app/) as an interface by running `make viz`. This will open a server and you can use some image you want to search or even use your webcam to get top 4 search results.
+The recommended method to get models is to use [gradio](https://www.gradio.app/) as an interface by running `make viz`. This will open a server and you can use some image you want to search or even use your webcam to get top 4 search models.
 
 ### Examples
 Search for contextual similarity

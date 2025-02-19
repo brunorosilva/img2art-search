@@ -28,7 +28,7 @@ def extract_embedding(image_data_batch, fine_tuned_model):
 
 def load_fine_tuned_model():
     fine_tuned_model = ViTImageSearchModel()
-    fine_tuned_model.load_state_dict(torch.load("results/model.pth"))
+    fine_tuned_model.load_state_dict(torch.load("models/model.pth"))
     fine_tuned_model.eval()
     return fine_tuned_model
 
@@ -86,7 +86,7 @@ def create_gallery(
         print(f"Error creating gallery: {e}")
 
     if save:
-        np.save("results/embeddings", gallery_embeddings)
+        np.save("models/embeddings", gallery_embeddings)
     return gallery_embeddings
 
 
