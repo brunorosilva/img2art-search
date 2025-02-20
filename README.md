@@ -1,8 +1,10 @@
 ---
-title: img2art-search
-app_file: app.py
-sdk: gradio
-sdk_version: 4.37.2
+title: Basic Docker SDK Space
+emoji: 🐳
+colorFrom: purple
+colorTo: gray
+sdk: docker
+app_port: 7860
 ---
 # Image-to-Art Search 🔍
 
