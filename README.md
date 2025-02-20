@@ -7,6 +7,7 @@ sdk: docker
 app_port: 7860
 ---
 # Image-to-Art Search 🔍
+<b>[Demo Link hosted on Hugging Face](https://huggingface.co/spaces/chicelli/img2art-search)</b>
 
 "<b>Find real artwork that looks like your images</b>"
 
