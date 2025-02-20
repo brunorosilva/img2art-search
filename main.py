@@ -9,6 +9,7 @@ def make_interface():
         fn=predict,
         inputs=gr.Image(type="pil"),
         outputs=gr.Gallery(label="Most similar images", height=256 * 3),
+        allow_flagging='never',
         # live=True,
     )
     interface.launch(share=False)
