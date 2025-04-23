@@ -121,10 +121,12 @@ Search for an object
 
 
 ## Contributing
-There are three topics I'd appreciate help with:
+There are some topics I'd appreciate help with:
 1. Increasing the gallery by embedding new painting datasets, the current one has 81k artworks because I just got a ready to go dataset, but the complete WikiArt catalog alone has 250k+ artworks, so I really want to up this number to a least 300k in the near future;
-2. Porting the encoding and search to a vector db, preferably chromadb;
-3. Open issues with how this could be improved, new ideas will be considered.
+2. Create optional search terms using CLIP;
+3. Video2art search?;
+4. Improve the search performance;
+5. Open issues with how this could be improved, new ideas will be considered.
 
 ## License
 The source code for the site is licensed under the MIT license, which you can find in the MIT-LICENSE.txt file.
