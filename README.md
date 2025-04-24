@@ -11,9 +11,9 @@ app_port: 7860
 
 "<b>Find real artwork that looks like your images</b>"
 
-This project fine-tunes a Vision Transformer (ViT) model, pre-trained with "google/vit-base-patch32-224-in21k" weights and fine tuned with the style of [ArtButMakeItSports](https://www.instagram.com/artbutmakeitsports/), to perform image-to-art search across 81k artworks made available by [WikiArt](https://wikiart.org/).
+This project fine-tunes a Vision Transformer (ViT) model, pre-trained with "google/vit-base-patch32-224-in21k" weights and fine tuned with an image to artwork dataset, to perform image-to-art search across 81k artworks made available by [WikiArt](https://wikiart.org/).
 
-![horse](examples/horse.jpg)
+![beach](examples/beach.gif)
 
 ## Table of Contents
 
@@ -28,7 +28,7 @@ This project fine-tunes a Vision Transformer (ViT) model, pre-trained with "goog
 
 ## Overview
 
-This project leverages the Vision Transformer (ViT) model architecture for the task of image-to-art search. By fine-tuning the pre-trained ViT model on a custom dataset derived from the Instagram account [ArtButMakeItSports](https://www.instagram.com/artbutmakeitsports/), we aim to create a model capable of matching images (but not only) to corresponding artworks, being able to search for any of the images on [WikiArt](https://wikiart.org/).
+This project leverages the Vision Transformer (ViT) model architecture for the task of image-to-art search. By fine-tuning the pre-trained ViT model on a custom images to artworks dataset, we aim to create a model capable of matching images (but not only) to corresponding artworks, being able to search for any of the images on [WikiArt](https://wikiart.org/).
 
 ## Installation
 
@@ -52,7 +52,7 @@ poetry install
 
 ### Dataset Preparation
 
-1. Download images from the [ArtButMakeItSports](https://www.instagram.com/artbutmakeitsports/) Instagram account.
+1. Create a dataset matching images to artworks.
 2. Organize the images into appropriate directories for training and validation.
 3. Get a fine tuned model
 4. Create the gallery using WikiArt
@@ -63,6 +63,7 @@ Fine-tune the ViT model:
 ```sh
 make train
 ```
+I'll eventually publish the model weights.
 
 ### Inference via Gradio
 
@@ -85,9 +86,9 @@ poetry run python main.py gallery --gallery_path <your_path>
 
 ## Dataset
 
-The dataset derives from 1k images from the Instagram account [ArtButMakeItSports](https://www.instagram.com/artbutmakeitsports/). Images are downloaded and split into training, validation and test sets. Each image is paired with its corresponding artwork for training purposes, if you want this dataset just ask me stating your usage.
+The fine tuning dataset derives from 1k examples of images and artwork. Images are split into training, validation and test sets.
 
-WikiArt is indexed using the same process, except that there's no expected result. So each artwork is mapped to itself and the model is used as a feature extractor and the gallery embeddings are saved as a numpy file (will be changed to chromadb in the future).
+WikiArt is indexed using the same process, except that there's no expected result. So each artwork is mapped to itself and the model is used as a feature extractor and the gallery embeddings are saved to Pinecone.
 
 ## Training
 
@@ -100,7 +101,7 @@ The training script fine-tunes the ViT model on the prepared dataset. Key steps 
 
 ## Interface
 
-The recommended method to get models is to use [gradio](https://www.gradio.app/) as an interface by running `make viz`. This will open a server and you can use some image you want to search or even use your webcam to get top 4 search models.
+The recommended method is to use the <b>[Demo Link hosted on Hugging Face](https://huggingface.co/spaces/chicelli/img2art-search)</b> or self-host [gradio](https://www.gradio.app/) as an interface running `make viz`.
 
 ### Examples
 Search for contextual similarity
@@ -117,7 +118,6 @@ Search for pose similarity
 
 Search for an object
 ![horse](examples/horse.jpg)
-
 
 
 ## Contributing
