@@ -1,5 +1,5 @@
 ---
-title: Basic Docker SDK Space
+title: Img2Art Search
 emoji: 🐳
 colorFrom: purple
 colorTo: gray
