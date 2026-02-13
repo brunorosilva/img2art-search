@@ -15,6 +15,11 @@ This project fine-tunes a Vision Transformer (ViT) model, pre-trained with "goog
 
 ![beach](examples/beach.gif)
 
+With a slightly different input, you'll get a different result.
+![beach2](examples/beach2.gif)
+
+
+
 ## Table of Contents
 
 - [Overview](#overview)
