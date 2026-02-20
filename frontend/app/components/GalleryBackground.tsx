@@ -3,11 +3,22 @@
 import GalleryRow from './GalleryRow';
 import galleryJson from '../data/galleryData.json';
 
+// Get basePath for GitHub Pages deployment
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
 // Type for gallery items
 interface GalleryItem {
   photoUrl: string;
   artworkUrl: string;
   distance?: string;
+}
+
+// Helper to prefix local URLs with basePath
+function prefixUrl(url: string): string {
+  if (url.startsWith('/') && !url.startsWith('//')) {
+    return `${basePath}${url}`;
+  }
+  return url;
 }
 
 // Fallback data in case the JSON is empty (before running generate_gallery.py)
@@ -23,9 +34,15 @@ const fallbackData: GalleryItem[] = [
 ];
 
 // Use generated data if available, otherwise use fallback
-const galleryItems: GalleryItem[] = galleryJson.items.length > 0
+// Prefix URLs with basePath for GitHub Pages
+const galleryItems: GalleryItem[] = (galleryJson.items.length > 0
   ? galleryJson.items
-  : fallbackData;
+  : fallbackData
+).map(item => ({
+  ...item,
+  photoUrl: prefixUrl(item.photoUrl),
+  artworkUrl: prefixUrl(item.artworkUrl),
+}));
 
 // Split items into rows (8 items per row, repeat to fill 6 rows)
 function createRows(items: GalleryItem[], rowCount: number = 6, itemsPerRow: number = 8): GalleryItem[][] {
