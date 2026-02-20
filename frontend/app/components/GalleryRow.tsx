@@ -24,8 +24,8 @@ export default function GalleryRow({ cards, direction, speed }: GalleryRowProps)
   const doubledCards = [...cards, ...cards];
 
   return (
-    <div className="gallery-row overflow-hidden py-2">
-      <div className={`flex ${animationClass}`} style={{ width: 'fit-content' }}>
+    <div className="gallery-row overflow-hidden h-full">
+      <div className={`flex items-center h-full ${animationClass}`} style={{ width: 'fit-content' }}>
         {doubledCards.map((card, index) => (
           <FlipCard
             key={`${index}-${card.photoUrl}`}

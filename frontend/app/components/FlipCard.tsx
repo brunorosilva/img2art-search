@@ -12,17 +12,19 @@ interface FlipCardProps {
 export default function FlipCard({ photoUrl, artworkUrl, artworkTitle, artist }: FlipCardProps) {
   return (
     <div
-      className="mx-2 flex-shrink-0 cursor-pointer"
+      className="mx-2 flex-shrink-0 cursor-pointer group overflow-hidden"
       style={{
-        width: '200px',
-        height: '280px',
+        width: '250px',
+        aspectRatio: '5 / 4',
         perspective: '1000px',
       }}
     >
       <div
-        className="relative w-full h-full transition-transform duration-500 ease-in-out hover:[transform:rotateY(180deg)]"
+        className="relative w-full h-full transition-transform duration-700 ease-out group-hover:[transform:rotateY(180deg)]"
         style={{
           transformStyle: 'preserve-3d',
+          WebkitTransformStyle: 'preserve-3d',
+          willChange: 'transform',
         }}
       >
         {/* Front - Photo */}
@@ -31,6 +33,7 @@ export default function FlipCard({ photoUrl, artworkUrl, artworkTitle, artist }:
           style={{
             backfaceVisibility: 'hidden',
             WebkitBackfaceVisibility: 'hidden',
+            transform: 'rotateY(0deg)',
           }}
         >
           <Image
@@ -38,12 +41,9 @@ export default function FlipCard({ photoUrl, artworkUrl, artworkTitle, artist }:
             alt="Photo"
             fill
             className="object-cover"
-            sizes="200px"
+            sizes="250px"
+            unoptimized
           />
-          <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/60 to-transparent" />
-          <div className="absolute bottom-3 left-3 right-3">
-            <span className="text-xs text-white/80 font-medium">Photo</span>
-          </div>
         </div>
 
         {/* Back - Artwork */}
@@ -60,13 +60,9 @@ export default function FlipCard({ photoUrl, artworkUrl, artworkTitle, artist }:
             alt={artworkTitle || 'Artwork'}
             fill
             className="object-cover"
-            sizes="200px"
+            sizes="250px"
+            unoptimized
           />
-          <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/80 to-transparent" />
-          <div className="absolute bottom-3 left-3 right-3">
-            <p className="text-xs text-white font-semibold truncate">{artworkTitle || 'Matched Artwork'}</p>
-            {artist && <p className="text-xs text-white/70 truncate">{artist}</p>}
-          </div>
         </div>
       </div>
     </div>

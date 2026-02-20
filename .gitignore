@@ -112,3 +112,11 @@ data/*.jpg
 data/*.jpeg
 notebooks
 models/model.pth
+
+# OS files
+.DS_Store
+*.DS_Store
+
+# Utility scripts (kept locally)
+fetch_art.py
+generate_gallery.py

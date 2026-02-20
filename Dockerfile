@@ -27,6 +27,6 @@ RUN pip install "poetry==$POETRY_VERSION" && \
 RUN python3 -m pip install --no-cache $HOME/app/wheels/*
 
 EXPOSE 7860
-ENV GRADIO_SERVER_NAME="0.0.0.0"
 
+# Run Gradio interface on port 7860 (required by Hugging Face Spaces)
 ENTRYPOINT ["poetry", "run", "python3", "main.py", "interface"]

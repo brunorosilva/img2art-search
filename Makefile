@@ -15,3 +15,5 @@ build-image:
 	docker build -t img2art-search .
 run-on-docker:
 	docker run --env-file .env -p 7860:7860 img2art-search
+serve:
+	poetry run uvicorn fastapi_app:app --host 0.0.0.0 --port 7860 --reload

@@ -1,86 +1,71 @@
 'use client';
 
 import GalleryRow from './GalleryRow';
+import galleryJson from '../data/galleryData.json';
 
-// Sample data - photos paired with matching artworks
-const galleryData = {
-  row1: [
-    { photoUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=560&fit=crop', artworkUrl: 'https://uploads7.wikiart.org/images/diego-velazquez/a-young-man-self-portrait-1624.jpg', artworkTitle: 'A young man in a Self Portrait (1624)', artist: 'Diego Velazquez' },
-    { photoUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=560&fit=crop', artworkUrl: 'https://uploads7.wikiart.org/images/diego-velazquez/a-young-man-self-portrait-1624.jpg', artworkTitle: 'A young man in a Self Portrait (1624)', artist: 'Diego Velazquez' },
-    { photoUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=560&fit=crop', artworkUrl: 'https://uploads7.wikiart.org/images/diego-velazquez/a-young-man-self-portrait-1624.jpg', artworkTitle: 'A young man in a Self Portrait (1624)', artist: 'Diego Velazquez' },
-    { photoUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=560&fit=crop', artworkUrl: 'https://uploads7.wikiart.org/images/diego-velazquez/a-young-man-self-portrait-1624.jpg', artworkTitle: 'A young man in a Self Portrait (1624)', artist: 'Diego Velazquez' },
-    { photoUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=560&fit=crop', artworkUrl: 'https://uploads7.wikiart.org/images/diego-velazquez/a-young-man-self-portrait-1624.jpg', artworkTitle: 'A young man in a Self Portrait (1624)', artist: 'Diego Velazquez' },
-    { photoUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=560&fit=crop', artworkUrl: 'https://uploads7.wikiart.org/images/diego-velazquez/a-young-man-self-portrait-1624.jpg', artworkTitle: 'A young man in a Self Portrait (1624)', artist: 'Diego Velazquez' },
-    { photoUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=560&fit=crop', artworkUrl: 'https://uploads7.wikiart.org/images/diego-velazquez/a-young-man-self-portrait-1624.jpg', artworkTitle: 'A young man in a Self Portrait (1624)', artist: 'Diego Velazquez' },
-    { photoUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=560&fit=crop', artworkUrl: 'https://uploads7.wikiart.org/images/diego-velazquez/a-young-man-self-portrait-1624.jpg', artworkTitle: 'A young man in a Self Portrait (1624)', artist: 'Diego Velazquez' },
-    { photoUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=560&fit=crop', artworkUrl: 'https://uploads7.wikiart.org/images/diego-velazquez/a-young-man-self-portrait-1624.jpg', artworkTitle: 'A young man in a Self Portrait (1624)', artist: 'Diego Velazquez' },
-  ],
-  row2: [
-    { photoUrl: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Meisje_met_de_parel.jpg/800px-Meisje_met_de_parel.jpg', artworkTitle: 'Girl with Pearl Earring', artist: 'Johannes Vermeer' },
-    { photoUrl: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Cotopaxi_%28Frederic_Edwin_Church%29%2C_1862.jpg/1280px-Cotopaxi_%28Frederic_Edwin_Church%29%2C_1862.jpg', artworkTitle: 'Cotopaxi', artist: 'Frederic Edwin Church' },
-    { photoUrl: 'https://images.unsplash.com/photo-1517849845537-4d257902454a?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Cassius_Marcellus_Coolidge_-_Poker_Game_%281894%29.png/1280px-Cassius_Marcellus_Coolidge_-_Poker_Game_%281894%29.png', artworkTitle: 'Dogs Playing Poker', artist: 'C.M. Coolidge' },
-    { photoUrl: 'https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Turner_-_Rain%2C_Steam_and_Speed_-_National_Gallery_file.jpg/1280px-Turner_-_Rain%2C_Steam_and_Speed_-_National_Gallery_file.jpg', artworkTitle: 'Rain, Steam and Speed', artist: 'J.M.W. Turner' },
-    { photoUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Johannes_Vermeer_%281632-1675%29_-_The_Girl_With_The_Pearl_Earring_%281665%29.jpg/800px-Johannes_Vermeer_%281632-1675%29_-_The_Girl_With_The_Pearl_Earring_%281665%29.jpg', artworkTitle: 'The Milkmaid', artist: 'Johannes Vermeer' },
-    { photoUrl: 'https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Claude_Monet_-_Water_Lilies_-_1906%2C_Ryerson.jpg/1280px-Claude_Monet_-_Water_Lilies_-_1906%2C_Ryerson.jpg', artworkTitle: 'Water Lilies', artist: 'Claude Monet' },
-    { photoUrl: 'https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Frederic_Leighton_-_Flaming_June_-_1895.jpg/1024px-Frederic_Leighton_-_Flaming_June_-_1895.jpg', artworkTitle: 'Flaming June', artist: 'Frederic Leighton' },
-    { photoUrl: 'https://images.unsplash.com/photo-1500622944204-b135684e99fd?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Albert_Bierstadt_-_Among_the_Sierra_Nevada%2C_California_-_Google_Art_Project.jpg/1280px-Albert_Bierstadt_-_Among_the_Sierra_Nevada%2C_California_-_Google_Art_Project.jpg', artworkTitle: 'Among the Sierra Nevada', artist: 'Albert Bierstadt' },
-  ],
-  row3: [
-    { photoUrl: 'https://images.unsplash.com/photo-1552058544-f2b08422138a?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/The_Scream.jpg/800px-The_Scream.jpg', artworkTitle: 'The Scream', artist: 'Edvard Munch' },
-    { photoUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=560&fit=crop', artworkUrl: 'https://uploads7.wikiart.org/images/diego-velazquez/a-young-man-self-portrait-1624.jpg', artworkTitle: 'A young man in a Self Portrait (1624)', artist: 'Diego Velazquez' },
-    { photoUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=560&fit=crop', artworkUrl: 'https://uploads7.wikiart.org/images/diego-velazquez/a-young-man-self-portrait-1624.jpg', artworkTitle: 'A young man in a Self Portrait (1624)', artist: 'Diego Velazquez' },
-    { photoUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=560&fit=crop', artworkUrl: 'https://uploads7.wikiart.org/images/diego-velazquez/a-young-man-self-portrait-1624.jpg', artworkTitle: 'A young man in a Self Portrait (1624)', artist: 'Diego Velazquez' },
-    { photoUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=560&fit=crop', artworkUrl: 'https://uploads7.wikiart.org/images/diego-velazquez/a-young-man-self-portrait-1624.jpg', artworkTitle: 'A young man in a Self Portrait (1624)', artist: 'Diego Velazquez' },
-    { photoUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=560&fit=crop', artworkUrl: 'https://uploads7.wikiart.org/images/diego-velazquez/a-young-man-self-portrait-1624.jpg', artworkTitle: 'A young man in a Self Portrait (1624)', artist: 'Diego Velazquez' },
-    { photoUrl: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg/1280px-Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg', artworkTitle: 'Birth of Venus', artist: 'Sandro Botticelli' },
-    { photoUrl: 'https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Caspar_David_Friedrich_-_Wanderer_above_the_sea_of_fog.jpg/800px-Caspar_David_Friedrich_-_Wanderer_above_the_sea_of_fog.jpg', artworkTitle: 'Wanderer Above Sea of Fog', artist: 'C.D. Friedrich' },
-  ],
-  row4: [
-    { photoUrl: 'https://images.unsplash.com/photo-1516478177764-9fe5bd7e9717?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Bal_du_moulin_de_la_Galette.jpg/1280px-Bal_du_moulin_de_la_Galette.jpg', artworkTitle: 'Bal du moulin de la Galette', artist: 'Pierre-Auguste Renoir' },
-    { photoUrl: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Ivan_Aivazovsky_-_The_Ninth_Wave_-_Google_Art_Project.jpg/1280px-Ivan_Aivazovsky_-_The_Ninth_Wave_-_Google_Art_Project.jpg', artworkTitle: 'The Ninth Wave', artist: 'Ivan Aivazovsky' },
-    { photoUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/The_Birth_of_Venus_%28Botticelli%29_Detail.jpg/800px-The_Birth_of_Venus_%28Botticelli%29_Detail.jpg', artworkTitle: 'Birth of Venus (detail)', artist: 'Sandro Botticelli' },
-    { photoUrl: 'https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Claude_Monet%2C_Saint-Georges_majeur_au_cr%C3%A9puscule.jpg/1280px-Claude_Monet%2C_Saint-Georges_majeur_au_cr%C3%A9puscule.jpg', artworkTitle: 'San Giorgio Maggiore at Dusk', artist: 'Claude Monet' },
-    { photoUrl: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Klimt_-_Der_Kuss.jpg/800px-Klimt_-_Der_Kuss.jpg', artworkTitle: 'The Kiss', artist: 'Gustav Klimt' },
-    { photoUrl: 'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Sunflowers_%28F454%29%2C_1888.jpg/800px-Sunflowers_%28F454%29%2C_1888.jpg', artworkTitle: 'Sunflowers', artist: 'Vincent van Gogh' },
-    { photoUrl: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Monet_-_Impression%2C_Sunrise.jpg/1280px-Monet_-_Impression%2C_Sunrise.jpg', artworkTitle: 'Impression, Sunrise', artist: 'Claude Monet' },
-    { photoUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/The_Son_of_Man.jpg/800px-The_Son_of_Man.jpg', artworkTitle: 'The Son of Man', artist: 'Rene Magritte' },
-  ],
-  row5: [
-    { photoUrl: 'https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Albert_Bierstadt_-_Looking_Down_Yosemite_Valley%2C_California.jpg/1280px-Albert_Bierstadt_-_Looking_Down_Yosemite_Valley%2C_California.jpg', artworkTitle: 'Yosemite Valley', artist: 'Albert Bierstadt' },
-    { photoUrl: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Pietro_Perugino_cat50c.jpg/800px-Pietro_Perugino_cat50c.jpg', artworkTitle: 'Madonna with Child', artist: 'Pietro Perugino' },
-    { photoUrl: 'https://images.unsplash.com/photo-1500259571355-332da5cb07aa?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Paul_Cezanne_-_A_Modern_Olympia_-_WGA04575.jpg/1280px-Paul_Cezanne_-_A_Modern_Olympia_-_WGA04575.jpg', artworkTitle: 'A Modern Olympia', artist: 'Paul Cezanne' },
-    { photoUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Joaqu%C3%ADn_Sorolla_y_Bastida_-_Walk_on_the_Beach_-_Google_Art_Project.jpg/1280px-Joaqu%C3%ADn_Sorolla_y_Bastida_-_Walk_on_the_Beach_-_Google_Art_Project.jpg', artworkTitle: 'Walk on the Beach', artist: 'Joaquin Sorolla' },
-    { photoUrl: 'https://images.unsplash.com/photo-1499996860823-5f82e24e0c85?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg', artworkTitle: 'Starry Night', artist: 'Vincent van Gogh' },
-    { photoUrl: 'https://images.unsplash.com/photo-1485178575877-1a13bf489dfe?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Edouard_Manet_-_Luncheon_on_the_Grass_-_Google_Art_Project.jpg/1280px-Edouard_Manet_-_Luncheon_on_the_Grass_-_Google_Art_Project.jpg', artworkTitle: 'Luncheon on the Grass', artist: 'Edouard Manet' },
-    { photoUrl: 'https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Shishkin_Ivan_-_Morning_in_a_Pine_Forest.jpg/1280px-Shishkin_Ivan_-_Morning_in_a_Pine_Forest.jpg', artworkTitle: 'Morning in a Pine Forest', artist: 'Ivan Shishkin' },
-    { photoUrl: 'https://images.unsplash.com/photo-1480455624313-e29b44bbfde1?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Grant_Wood_-_American_Gothic_-_Google_Art_Project.jpg/800px-Grant_Wood_-_American_Gothic_-_Google_Art_Project.jpg', artworkTitle: 'American Gothic', artist: 'Grant Wood' },
-  ],
-  row6: [
-    { photoUrl: 'https://images.unsplash.com/photo-1491895200222-0fc4a4c35e18?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Claude_Monet_-_Water_Lilies_-_1910.jpg/1280px-Claude_Monet_-_Water_Lilies_-_1910.jpg', artworkTitle: 'Water Lilies', artist: 'Claude Monet' },
-    { photoUrl: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Jean-Honor%C3%A9_Fragonard_-_The_Swing.jpg/800px-Jean-Honor%C3%A9_Fragonard_-_The_Swing.jpg', artworkTitle: 'The Swing', artist: 'Jean-Honore Fragonard' },
-    { photoUrl: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/VanGogh-starry_night_ballance1.jpg/1280px-VanGogh-starry_night_ballance1.jpg', artworkTitle: 'Cafe Terrace at Night', artist: 'Vincent van Gogh' },
-    { photoUrl: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Claude_Monet_-_The_Japanese_Footbridge.jpg/1024px-Claude_Monet_-_The_Japanese_Footbridge.jpg', artworkTitle: 'The Japanese Footbridge', artist: 'Claude Monet' },
-    { photoUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Rembrandt_Self-portrait_%28Kenwood%29.jpg/800px-Rembrandt_Self-portrait_%28Kenwood%29.jpg', artworkTitle: 'Self-Portrait', artist: 'Rembrandt' },
-    { photoUrl: 'https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Gustav_Klimt_-_The_Tree_of_Life_-_1909.jpg/1280px-Gustav_Klimt_-_The_Tree_of_Life_-_1909.jpg', artworkTitle: 'Tree of Life', artist: 'Gustav Klimt' },
-    { photoUrl: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Everest_North_Face_toward_Base_Camp_Tibet_Luca_Galuzzi_2006.jpg/1280px-Everest_North_Face_toward_Base_Camp_Tibet_Luca_Galuzzi_2006.jpg', artworkTitle: 'Mont Blanc', artist: 'Thomas Cole' },
-    { photoUrl: 'https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Edgar_Degas_-_The_Dance_Class_-_Google_Art_Project.jpg/1024px-Edgar_Degas_-_The_Dance_Class_-_Google_Art_Project.jpg', artworkTitle: 'The Dance Class', artist: 'Edgar Degas' },
-  ],
-};
+// Type for gallery items
+interface GalleryItem {
+  photoUrl: string;
+  artworkUrl: string;
+  distance?: string;
+}
+
+// Fallback data in case the JSON is empty (before running generate_gallery.py)
+const fallbackData: GalleryItem[] = [
+  { photoUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=560&fit=crop', artworkUrl: 'https://uploads7.wikiart.org/images/diego-velazquez/a-young-man-self-portrait-1624.jpg' },
+  { photoUrl: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Meisje_met_de_parel.jpg/800px-Meisje_met_de_parel.jpg' },
+  { photoUrl: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Caspar_David_Friedrich_-_Wanderer_above_the_sea_of_fog.jpg/800px-Caspar_David_Friedrich_-_Wanderer_above_the_sea_of_fog.jpg' },
+  { photoUrl: 'https://images.unsplash.com/photo-1517849845537-4d257902454a?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Cassius_Marcellus_Coolidge_-_Poker_Game_%281894%29.png/1280px-Cassius_Marcellus_Coolidge_-_Poker_Game_%281894%29.png' },
+  { photoUrl: 'https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Turner_-_Rain%2C_Steam_and_Speed_-_National_Gallery_file.jpg/1280px-Turner_-_Rain%2C_Steam_and_Speed_-_National_Gallery_file.jpg' },
+  { photoUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Johannes_Vermeer_%281632-1675%29_-_The_Girl_With_The_Pearl_Earring_%281665%29.jpg/800px-Johannes_Vermeer_%281632-1675%29_-_The_Girl_With_The_Pearl_Earring_%281665%29.jpg' },
+  { photoUrl: 'https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Claude_Monet_-_Water_Lilies_-_1906%2C_Ryerson.jpg/1280px-Claude_Monet_-_Water_Lilies_-_1906%2C_Ryerson.jpg' },
+  { photoUrl: 'https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=400&h=560&fit=crop', artworkUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Frederic_Leighton_-_Flaming_June_-_1895.jpg/1024px-Frederic_Leighton_-_Flaming_June_-_1895.jpg' },
+];
+
+// Use generated data if available, otherwise use fallback
+const galleryItems: GalleryItem[] = galleryJson.items.length > 0
+  ? galleryJson.items
+  : fallbackData;
+
+// Split items into rows (8 items per row, repeat to fill 6 rows)
+function createRows(items: GalleryItem[], rowCount: number = 6, itemsPerRow: number = 8): GalleryItem[][] {
+  const rows: GalleryItem[][] = [];
+
+  for (let i = 0; i < rowCount; i++) {
+    const row: GalleryItem[] = [];
+    for (let j = 0; j < itemsPerRow; j++) {
+      // Cycle through items if we don't have enough
+      const itemIndex = (i * itemsPerRow + j) % items.length;
+      row.push(items[itemIndex]);
+    }
+    rows.push(row);
+  }
+
+  return rows;
+}
+
+const rows = createRows(galleryItems);
 
 export default function GalleryBackground() {
+  const directions: ('left' | 'right')[] = ['left', 'right', 'left', 'right', 'left', 'right'];
+  const speeds: ('slow' | 'normal' | 'fast')[] = ['normal', 'slow', 'fast', 'normal', 'slow', 'fast'];
+
   return (
     <div className="fixed inset-0 z-0 overflow-hidden">
-      <div className="absolute inset-0 flex flex-col justify-center gap-4 -rotate-6 scale-110">
-        <GalleryRow cards={galleryData.row1} direction="left" speed="normal" />
-        <GalleryRow cards={galleryData.row2} direction="right" speed="slow" />
-        <GalleryRow cards={galleryData.row3} direction="left" speed="fast" />
-        <GalleryRow cards={galleryData.row4} direction="right" speed="normal" />
-        <GalleryRow cards={galleryData.row5} direction="left" speed="slow" />
-        <GalleryRow cards={galleryData.row6} direction="right" speed="fast" />
+      <div className="absolute inset-0 flex flex-col justify-center items-start gap-4 -rotate-6 scale-110" style={{ minHeight: 'max-content' }}>
+        {rows.map((rowCards, index) => (
+          <div key={index} className="flex-shrink-0" style={{ height: '200px' }}>
+            <GalleryRow
+              cards={rowCards}
+              direction={directions[index]}
+              speed={speeds[index]}
+            />
+          </div>
+        ))}
       </div>
       {/* Gradient overlays for depth - pointer-events-none so cards are still interactive */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black opacity-70 pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-50 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/60 to-stone-950 opacity-80 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-r from-stone-950 via-transparent to-stone-950 opacity-60 pointer-events-none" />
     </div>
   );
 }
