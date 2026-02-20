@@ -9,9 +9,9 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           {/* Nav Links - Left */}
           <div className="hidden md:flex items-center gap-8">
-            <Link href="#how-it-works" className="text-stone-400 hover:text-stone-100 transition-colors text-sm tracking-wide">
+            {/* <Link href="#how-it-works" className="text-stone-400 hover:text-stone-100 transition-colors text-sm tracking-wide">
               How it Works
-            </Link>
+            </Link> */}
             <Link href="#examples" className="text-stone-400 hover:text-stone-100 transition-colors text-sm tracking-wide">
               Gallery
             </Link>
